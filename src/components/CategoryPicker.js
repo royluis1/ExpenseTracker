@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import CATEGORIES from '../data/categories';
 import colors from '../theme/colors';
@@ -14,8 +15,17 @@ export default function CategoryPicker({ label, value, onChange }) {
             <Pressable
               key={category.id}
               onPress={() => onChange(category.id)}
-              style={[styles.chip, selected && styles.chipSelected]}
+              style={[
+                styles.chip,
+                selected && { backgroundColor: category.color, borderColor: category.color },
+              ]}
             >
+              <Ionicons
+                name={category.icon}
+                size={16}
+                color={selected ? colors.white : category.color}
+                style={styles.chipIcon}
+              />
               <Text style={[styles.chipText, selected && styles.chipTextSelected]}>
                 {category.name}
               </Text>
@@ -52,9 +62,8 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     backgroundColor: colors.surface,
   },
-  chipSelected: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
+  chipIcon: {
+    marginRight: 6,
   },
   chipText: {
     fontSize: 14,

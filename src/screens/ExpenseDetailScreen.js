@@ -1,4 +1,5 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import CategoryIcon from '../components/CategoryIcon';
 import PrimaryButton from '../components/PrimaryButton';
 import CATEGORIES from '../data/categories';
 import EXPENSES from '../data/expenses';
@@ -31,6 +32,7 @@ export default function ExpenseDetailScreen({ route, navigation }) {
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
       <View style={styles.header}>
+        <CategoryIcon category={category} size={72} />
         <Text style={styles.description}>{expense.description}</Text>
         <Text style={styles.amount}>{formatCurrency(expense.amount)}</Text>
       </View>
@@ -63,6 +65,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   description: {
+    marginTop: 12,
     fontSize: 24,
     fontWeight: 'bold',
     color: colors.text,
