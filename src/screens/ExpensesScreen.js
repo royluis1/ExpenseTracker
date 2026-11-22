@@ -1,17 +1,37 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
+import ExpenseItem from '../components/ExpenseItem';
+import EXPENSES from '../data/expenses';
+import colors from '../theme/colors';
 
 export default function ExpensesScreen() {
   return (
-    <View style={styles.container}>
-      <Text>Mis gastos</Text>
-    </View>
+    <FlatList
+      style={styles.screen}
+      contentContainerStyle={styles.content}
+      data={EXPENSES}
+      keyExtractor={(item) => item.id}
+      renderItem={({ item }) => <ExpenseItem expense={item} />}
+      ItemSeparatorComponent={() => <View style={styles.separator} />}
+      ListHeaderComponent={<Text style={styles.title}>Últimos gastos</Text>}
+    />
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: colors.background,
+  },
+  content: {
+    padding: 16,
+  },
+  title: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: colors.textSecondary,
+    marginBottom: 12,
+  },
+  separator: {
+    height: 10,
   },
 });
