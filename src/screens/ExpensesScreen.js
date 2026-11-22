@@ -3,14 +3,19 @@ import ExpenseItem from '../components/ExpenseItem';
 import EXPENSES from '../data/expenses';
 import colors from '../theme/colors';
 
-export default function ExpensesScreen() {
+export default function ExpensesScreen({ navigation }) {
   return (
     <FlatList
       style={styles.screen}
       contentContainerStyle={styles.content}
       data={EXPENSES}
       keyExtractor={(item) => item.id}
-      renderItem={({ item }) => <ExpenseItem expense={item} />}
+      renderItem={({ item }) => (
+        <ExpenseItem
+          expense={item}
+          onPress={() => navigation.navigate('ExpenseDetail', { expenseId: item.id })}
+        />
+      )}
       ItemSeparatorComponent={() => <View style={styles.separator} />}
       ListHeaderComponent={<Text style={styles.title}>Últimos gastos</Text>}
     />

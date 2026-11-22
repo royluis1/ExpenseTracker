@@ -1,4 +1,5 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import PrimaryButton from '../components/PrimaryButton';
 import colors from '../theme/colors';
 
 const FEATURES = [
@@ -7,7 +8,7 @@ const FEATURES = [
   'Consultá cuánto gastaste en total.',
 ];
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
       <View style={styles.hero}>
@@ -27,6 +28,16 @@ export default function HomeScreen() {
             <Text style={styles.featureText}>{feature}</Text>
           </View>
         ))}
+      </View>
+
+      <View style={styles.actions}>
+        <PrimaryButton title="Ver mis gastos" onPress={() => navigation.navigate('Expenses')} />
+        <PrimaryButton
+          title="Cargar un gasto"
+          variant="outline"
+          onPress={() => navigation.navigate('NewExpense')}
+          style={styles.secondaryButton}
+        />
       </View>
     </ScrollView>
   );
@@ -92,5 +103,11 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 15,
     color: colors.text,
+  },
+  actions: {
+    marginTop: 28,
+  },
+  secondaryButton: {
+    marginTop: 12,
   },
 });

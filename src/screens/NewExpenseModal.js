@@ -14,15 +14,16 @@ import CATEGORIES from '../data/categories';
 import colors from '../theme/colors';
 
 // Muestra un mensaje simple. Alert no funciona en la versión web, por eso se usa window.alert ahí.
-function showMessage(title, message) {
+function showMessage(title, message, onClose) {
   if (Platform.OS === 'web') {
     window.alert(`${title}\n\n${message}`);
+    if (onClose) onClose();
   } else {
-    Alert.alert(title, message);
+    Alert.alert(title, message, [{ text: 'OK', onPress: onClose }]);
   }
 }
 
-export default function NewExpenseModal() {
+export default function NewExpenseModal({ navigation }) {
   const [name, setName] = useState('');
   const [amount, setAmount] = useState('');
   const [categoryId, setCategoryId] = useState(CATEGORIES[0].id);
@@ -38,7 +39,8 @@ export default function NewExpenseModal() {
     console.log('Gasto a guardar:', { name, amount, category: category.name });
     showMessage(
       'Gasto registrado',
-      `${name} - $${amount} (${category.name})\n\nEn este Sprint los datos todavía no se guardan.`
+      `${name} - $${amount} (${category.name})\n\nEn este Sprint los datos todavía no se guardan.`,
+      () => navigation.goBack()
     );
   };
 
@@ -68,6 +70,12 @@ export default function NewExpenseModal() {
         <CategoryPicker label="Categoría" value={categoryId} onChange={setCategoryId} />
 
         <PrimaryButton title="Guardar" onPress={handleSave} />
+        <PrimaryButton
+          title="Cancelar"
+          variant="outline"
+          onPress={() => navigation.goBack()}
+          style={styles.cancelButton}
+        />
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -85,5 +93,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: colors.textSecondary,
     marginBottom: 24,
+  },
+  cancelButton: {
+    marginTop: 12,
   },
 });
