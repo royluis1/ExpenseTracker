@@ -1,5 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import CATEGORIES from '../data/categories';
+import CategoryIcon from './CategoryIcon';
 import colors from '../theme/colors';
 import { formatCurrency } from '../utils/format';
 
@@ -12,9 +13,12 @@ export default function ExpenseItem({ expense, onPress }) {
       onPress={onPress}
       style={({ pressed }) => [styles.container, pressed && styles.pressed]}
     >
+      <CategoryIcon category={category} />
       <View style={styles.info}>
         <Text style={styles.description}>{expense.description}</Text>
-        <Text style={styles.category}>{category ? category.name : 'Sin categoría'}</Text>
+        <Text style={[styles.category, category && { color: category.color }]}>
+          {category ? category.name : 'Sin categoría'}
+        </Text>
       </View>
       <Text style={styles.amount}>{formatCurrency(expense.amount)}</Text>
     </Pressable>
@@ -36,6 +40,7 @@ const styles = StyleSheet.create({
   },
   info: {
     flex: 1,
+    marginLeft: 12,
   },
   description: {
     fontSize: 16,

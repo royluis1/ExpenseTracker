@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import PrimaryButton from '../components/PrimaryButton';
 import colors from '../theme/colors';
 
@@ -12,6 +12,12 @@ export default function HomeScreen({ navigation }) {
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
       <View style={styles.hero}>
+        <Image
+          source={require('../assets/welcome-illustration.png')}
+          style={styles.illustration}
+          resizeMode="contain"
+          accessibilityLabel="Ilustración de una billetera con gastos"
+        />
         <Text style={styles.appName}>ExpenseTracker</Text>
         <Text style={styles.welcome}>¡Te damos la bienvenida!</Text>
         <Text style={styles.description}>
@@ -50,11 +56,16 @@ const styles = StyleSheet.create({
   },
   content: {
     padding: 24,
-    paddingTop: 64,
+    paddingTop: 48,
   },
   hero: {
     alignItems: 'center',
     marginBottom: 32,
+  },
+  illustration: {
+    width: 240,
+    height: 180,
+    marginBottom: 16,
   },
   appName: {
     fontSize: 34,

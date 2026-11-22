@@ -1,5 +1,6 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import ExpenseItem from '../components/ExpenseItem';
+import ExpensesTotal from '../components/ExpensesTotal';
 import EXPENSES from '../data/expenses';
 import colors from '../theme/colors';
 
@@ -18,6 +19,7 @@ export default function ExpensesScreen({ navigation }) {
       )}
       ItemSeparatorComponent={() => <View style={styles.separator} />}
       ListHeaderComponent={<Text style={styles.title}>Últimos gastos</Text>}
+      ListFooterComponent={<ExpensesTotal expenses={EXPENSES} />}
     />
   );
 }
