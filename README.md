@@ -124,13 +124,13 @@ Detalle de lo pedido en cada una:
 
 ### Expo Go
 
-<!-- Agregar acá las capturas tomadas desde el celular con Expo Go, por ejemplo:
-| Bienvenida | Listado | Nuevo gasto |
+| Bienvenida | Listado | Detalle |
 | --- | --- | --- |
-| ![](docs/screenshots/expo-go/bienvenida.png) | ![](docs/screenshots/expo-go/listado.png) | ![](docs/screenshots/expo-go/formulario.png) |
--->
+| <img src="docs/screenshots/expo-go/bienvenida.jpg" width="220"> | <img src="docs/screenshots/expo-go/listado.jpg" width="220"> | <img src="docs/screenshots/expo-go/detalle.jpg" width="220"> |
 
-_Pendiente: capturas desde el celular._
+| Nuevo gasto | Gasto registrado (Alert) | Ajustes |
+| --- | --- | --- |
+| <img src="docs/screenshots/expo-go/formulario.jpg" width="220"> | <img src="docs/screenshots/expo-go/guardado.jpg" width="220"> | <img src="docs/screenshots/expo-go/ajustes.jpg" width="220"> |
 
 ### Vista previa (versión web, `npm run web`)
 
